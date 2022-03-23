@@ -46,7 +46,6 @@ class Keranjang extends Component {
                         jumlah={item.jumlah}
                         onEdit={ () => this.Edit(item)}
                         onDrop={ () => this.Drop(item)}
-                        total = {item.harga * item.jumlah}
                         />
                     ))}
                 </div>
