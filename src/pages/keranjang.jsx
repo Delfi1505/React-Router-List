@@ -28,23 +28,6 @@ class Keranjang extends Component {
             selectedItem: null,
        } 
        this.state.filterKeranjang=this.state.keranjang
-       
-    }
-    getCart = () =>{
-        let tempCart =[]
-        let totalHarga= 0
-        if (localStorage.getItem("cart") !== null){
-          tempCart = JSON.parse(localStorage.getItem("cart"))
-        }
-        tempCart.map(item => {
-          //2 cara
-          //totalHarga = totalHarga + (item.harga * item.jumlahBeli)
-          totalHarga += (item.harga * item.jumlahBeli)
-        })
-        this.setState({
-          cart: tempCart,
-          total: totalHarga
-        })
       }
     render(){
         return (
@@ -59,7 +42,7 @@ class Keranjang extends Component {
                         <Card
                         nama={item.nama}
                         gambar={item.gambar}
-                        harga={item.harga}
+                        harga={item.harga * item.jumlah}
                         jumlah={item.jumlah}
                         onEdit={ () => this.Edit(item)}
                         onDrop={ () => this.Drop(item)}
@@ -67,7 +50,6 @@ class Keranjang extends Component {
                         />
                     ))}
                 </div>
-                <h5 className="text-danger">Total Harga: Rp.{this.state.total}</h5>
                 <button className="btn btn-success" onClick={() => this.Add()} >
                         Tambah Produk
                 </button>
